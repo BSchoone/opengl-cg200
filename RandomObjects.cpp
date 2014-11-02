@@ -6,6 +6,8 @@
 #include "Controls.hpp"
 #include <cmath>
 
+
+//This creates a tree
 void MuthaFuckinTree(double x, double y, double z){
 	glPushMatrix();
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -25,15 +27,8 @@ void MuthaFuckinTree(double x, double y, double z){
 		glTranslatef(x, 0.0f, z);
 		glRotated(5.0*sin(animation), 1.0f, 0.0f, 0.0f);
 		
-		//glTranslatef(x, y, z);
 		glTranslatef(0.0f, y, 0.0f);
-
 		
-		//glTranslatef(x, 0.0f, z);
-		
-		//glTranslatef(30.0*sin(animation),0.0f , 0.0f);
-		
-
 		// draw data
 		glDrawArrays(GL_TRIANGLES, 0, tree1NumVerts);
 
@@ -42,13 +37,13 @@ void MuthaFuckinTree(double x, double y, double z){
 	glPopMatrix();
 }
 
+//Campfire
 void Fireplace(){
 
 	glPushMatrix();
 		glEnableClientState(GL_VERTEX_ARRAY);
 		// set input data to arrays
 		glVertexPointer(3, GL_FLOAT, 0, fireplaceVerts);
-		//glTexCoordPointer(2, GL_FLOAT, 0, fireplaceTexCoords);
 
 		//texture
 		glColor4f(1.0f, 0.5f, 0.0f, 1.0f);
@@ -61,6 +56,7 @@ void Fireplace(){
 	glPopMatrix();
 }
 
+//Old Duke in the outback
 void DukeNukem(){
 	
 	
@@ -68,11 +64,9 @@ void DukeNukem(){
 		glEnableClientState(GL_VERTEX_ARRAY);
 		// set input data to arrays
 		glVertexPointer(3, GL_FLOAT, 0, DukeVerts);
-		//glTexCoordPointer(2, GL_FLOAT, 0, DukeTexCoords);
 			
 		// draw data
 		glColor4f(1.0, 1.0, 0.0, 0.5);
-		//glMaterialfv(GL_FRONT_AND_BACK,GL_SHININESS);
 		glScalef(0.5f,0.5f,0.5f);
 		glTranslatef(0.0f, 0.65f, -2.0f);
 		glRotated(360*animation, 0.0f, 1.0f, 0.0f);
@@ -84,22 +78,18 @@ void DukeNukem(){
 	glPopMatrix();
 }
 
+//Creates the grass floor
 void ground(){
 	glPushMatrix();
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-     	//glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-		//glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+
      	glBindTexture(GL_TEXTURE_2D, 1);
      	glEnable(GL_TEXTURE_2D);
 	 	
-        //glColor3f(1.0f, 1.0f, 1.0f);
-
-
 		glBegin(GL_QUADS);
 			
 			glNormal3f(0,0,1); // the surface normal is pointing upwards
 			glTexCoord2f(50.0f, 50.0f);
-			//glColor3f(0.0, 1.0, 0.0);
 			glVertex3f(50, 0, 50);
 			glTexCoord2f(50.0f, -50.0f);
 			glVertex3f(50, 0, -50);
@@ -114,6 +104,7 @@ void ground(){
 	glPopMatrix();
 }
 
+//Used to create the brick house thing
 void cube(){
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
  	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
@@ -128,9 +119,8 @@ void cube(){
 		glTranslatef(-1.0f, 0.5f, 0.0f);
 
 
-		// White side - BACK
+		//BACK
 		glBegin(GL_POLYGON);
-			//glColor3f(   1.0,  1.0, 1.0 );
 			glNormal3f(0,0,1);
 			
 			glTexCoord3f(0.5f, -0.5f, 0.5f);
@@ -146,9 +136,8 @@ void cube(){
 			glVertex3f( -0.5, -0.5, 0.5 );
 		glEnd();
 		
-		// White side - FRONT
+		//FRONT
 		glBegin(GL_POLYGON);
-			//glColor3f(   1.0,  1.0, 1.0 );
 			glTexCoord3f(-0.5f, 0.5f, -0.5f);
 			glVertex3f(  -0.5, 0.5, -0.5 );
 			
@@ -163,9 +152,8 @@ void cube(){
 			
 		glEnd();
 
-		// Purple side - RIGHT
+		//RIGHT
 		glBegin(GL_POLYGON);
-			//glColor3f(  1.0,  0.0,  1.0 );
 			glTexCoord3f(0.5f, -0.5f, -0.5f);
 			glVertex3f( 0.5, -0.5, -0.5 );
 			
@@ -179,9 +167,8 @@ void cube(){
 			glVertex3f( 0.5, -0.5,  0.5 );
 		glEnd();
 		 
-		// Green side - LEFT
+		//LEFT
 		glBegin(GL_POLYGON);
-			//glColor3f(   0.0,  1.0,  0.0 );
 			glTexCoord3f(-0.5f, -0.5f, -0.5f);
 			glVertex3f( -0.5, -0.5,  0.5 );
 			
@@ -195,18 +182,16 @@ void cube(){
 			glVertex3f( -0.5, -0.5, -0.5 );
 		glEnd();
 		 
-		// Blue side - TOP
+		//TOP
 		glBegin(GL_POLYGON);
-			//glColor3f(   0.0,  0.0,  1.0 );
 			glVertex3f(  0.5,  0.5,  0.5 );
 			glVertex3f(  0.5,  0.5, -0.5 );
 			glVertex3f( -0.5,  0.5, -0.5 );
 			glVertex3f( -0.5,  0.5,  0.5 );
 		glEnd();
 		 
-		// Red side - BOTTOM
+		//BOTTOM
 		glBegin(GL_POLYGON);
-			//glColor3f(   1.0,  0.0,  0.0 );
 			glVertex3f(  0.5, -0.5, -0.5 );
 			glVertex3f(  0.5, -0.5,  0.5 );
 			glVertex3f( -0.5, -0.5,  0.5 );
@@ -217,11 +202,10 @@ void cube(){
 	glDisable(GL_TEXTURE_2D);
 }
 
+
+//Makes the fully sikkk purple log
 void logseat(double height, double width)
 {
-
-
-
     glPushMatrix();
     
     glColor3f(0.4, 0.2, 0.0);
@@ -244,13 +228,7 @@ void logseat(double height, double width)
 }
 
 
-
-
-
-
-
-
-
+//This is used to draw Axis
 void Arrow(GLdouble x1,GLdouble y1,GLdouble z1,GLdouble x2,GLdouble y2,GLdouble z2,GLdouble D)
 {
   double x=x2-x1;
@@ -302,6 +280,8 @@ void Arrow(GLdouble x1,GLdouble y1,GLdouble z1,GLdouble x2,GLdouble y2,GLdouble 
     glPopMatrix ();
 
 }
+
+//This actually draws the axis
 void drawAxes(GLdouble length)
 {
     glPushMatrix();

@@ -1,0 +1,3 @@
+run "make clean" to delete and object files etc
+"run "make" to compile them
+Run "./baron.out" to run the scene

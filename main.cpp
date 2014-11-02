@@ -1,3 +1,8 @@
+/*
+	This creates all the OpenGL stuff and loads the screen
+
+*/
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -45,9 +50,8 @@ int main (int argc, char **argv)
 
 void display (void)
 {       
-	//printf("%lf\n", animationSpeed);
+	//Create the Fog
 	glFogf(GL_FOG_DENSITY, density);
-	//printf("Displaying\n");
 	glClearColor(0.5f, 0.5f, 0.5f, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -66,9 +70,10 @@ void display (void)
 
 		logseat(1.0, 0.25);
 		cube();
-		drawAxes(5.0);
+		drawAxes(5.0);	
 		
-		
+		//Randomly generate the trees in the image
+		//all 40 of them
 		for(int ii=0; ii<=40; ii++)
 		{
 			MuthaFuckinTree(arry1[ii], 0.5f, arry2[ii]);
@@ -101,8 +106,6 @@ void reshape (int w, int h)
    	glMatrixMode (GL_MODELVIEW);
 }
 
-
-
 void init(void)
 {
    	GLfloat light_position[] = { 5.0, 5.0, 5.0, 0.0 };
@@ -115,6 +118,8 @@ void init(void)
     GLfloat AmbientLight[] = {alr, alg, alb}; //set AmbientLight[] to the specified values
     GLfloat LightPosition[] = {lx, ly, lz, lw}; //set the LightPosition to the specified values
     GLfloat LightPosition1[] = {lx1, ly1, lz1, lw1}; //set the LightPosition to the specified values
+    
+    //The two light sources
     glLightfv (GL_LIGHT0, GL_POSITION, LightPosition); //change the light accordingly
     glLightfv (GL_LIGHT1, GL_POSITION, LightPosition1);
 
@@ -135,11 +140,13 @@ void init(void)
 
    	glFogi(GL_FOG_MODE, GL_EXP2); //set the fog mode to GL_EXP2
 
-	glFogfv(GL_FOG_COLOR, fogColor); //set the fog color to our color chosen above
-	glFogf(GL_FOG_DENSITY, density); //set the density to the value above
+	glFogfv(GL_FOG_COLOR, fogColor); //set the fog color
+	glFogf(GL_FOG_DENSITY, density); //set the density
 
-	glHint (GL_FOG_HINT, GL_NICEST); // set the fog to look the nicest, may slow down on older cards
+	glHint (GL_FOG_HINT, GL_NICEST); // set the fog to look not like shit
 
+
+	//Load all my textures
    	Image* image1= loadBMP("park.bmp");
     _textureId = loadTexture(image1);
     printf("%d\n", _textureId);
@@ -155,7 +162,7 @@ void init(void)
 
 }
 
-
+//Randomly generate the x,z for the trees
 void fRand(double bot, double top)
 {
     int n = 50;

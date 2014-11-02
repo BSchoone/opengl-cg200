@@ -1,9 +1,13 @@
+/*
+	This file is in charge of all the controls of the program
+*/
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <stdio.h>
 #include "Controls.hpp"
 
+	//GLobals that Control the Animation etc
 	GLfloat rotateY;
 	GLfloat rotateYSpeed;
 	GLfloat rotateX;
@@ -84,20 +88,20 @@ void keyPressed (unsigned char key, int x, int y)
 			if(animationSpeed == 0.0)
 				animationSpeed = 0.05;
 		break;
-
+		
 		case 'A':
-			if(animationSpeed != 0.0)
-				animationSpeed = 0.0;
+			if(animationSpeed == 0.0)
+				animationSpeed = 0.05;
 		break;
 		
-		// Lower case z zooms into the scene
+		//z zooms into the scene
 		case 'z': 
 			if (zZoom < MAXZOOM){
 				detail+=20;
 				zZoom = zZoom + ZOOM;
 			}
         break;
-        //Upper case z zooms out of the scene
+        //Z zooms out of the scene
         case 'Z': 
 	        if (zZoom > 2.7f){
 	        	detail-=20;
@@ -129,10 +133,12 @@ void keyPressed (unsigned char key, int x, int y)
 		case 'C':
 			animationSpeed=pauseSpeed;		
 		break;
+		//Pressing d will reduce the amount of fog
 		case 'd':
 			if(density>0.0)
 				density = density - 0.05;
 		break;
+		//Pressing D will reduce the amount of fog
 		case 'D':
 			if(density<0.3)
 				density = density + 0.05;		
